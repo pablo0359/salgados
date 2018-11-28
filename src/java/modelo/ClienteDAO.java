@@ -38,19 +38,29 @@ this.desconectar();
  //Método para realizar a alteração do cliente.
 public void alterar(Cliente c) throws Exception{
 //Realizar a conexão.
+String sql;
     this.conectar();
 //Criar a variável que irá possuir a string do sql.
-    String sql = "UPDATE cliente SET nome=?,telefone=?,senha=?,email=?,cpf=?,rg=? WHERE id=?";
+if (!"".equals(c.getSenha())){
+    sql = "UPDATE cliente SET nome=?,telefone=?,email=?,cpf=?,rg=?,senha=? WHERE id=?";}
+else{
+    sql = "UPDATE cliente SET nome=?,telefone=?,email=?,cpf=?,rg=? WHERE id=?";
+}
 //variável que irá incluir as variáveis no sql
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Incluir as variáveis dentro do pstm para depois executá-las.
     pstm.setString(1, c.getNome());
-    pstm.setString(2, c.getTelefone());
-    pstm.setString(3, c.getSenha());
-    pstm.setString(4, c.getEmail());
-    pstm.setString(5, c.getCpf());
-    pstm.setString(6, c.getRG());
+    pstm.setString(2, c.getTelefone());    
+    pstm.setString(3, c.getEmail());
+    pstm.setString(4, c.getCpf());
+    pstm.setString(5, c.getRG());
+    if (!"".equals(c.getSenha())){
+    pstm.setString(6, c.getSenha());
     pstm.setInt(7, c.getId());
+    }
+    else{
+        pstm.setInt(6, c.getId());
+    }
 //Executar o string com as variáveis dentro do pstm
     pstm.execute();
 //Desconetar do banco de dados para liberar a memória.
@@ -155,7 +165,7 @@ public Cliente logar(String login, String senha) throws Exception{
 //Criando um objeto cliente para obter o login e a senha
     Cliente c = new Cliente();
 //Criar a veriável sql para inserir a string no banco de dados
-    String sql = "SELECT * FROM cliente WHERE login=?";
+    String sql = "SELECT * FROM cliente WHERE email=?";
 //Criar a variável pstm para obter o parâmetro para preenchimento
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Incluir o pstm para inserir o parâmetro dentro da string login

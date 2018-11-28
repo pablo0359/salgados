@@ -24,6 +24,10 @@
         <servlet-name>ExcluirProduto</servlet-name>
         <servlet-class>controle.ExcluirProduto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidaLogin</servlet-name>
+        <servlet-class>controle.ValidaLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ExcluirProduto</servlet-name>
         <url-pattern>/excluir_produto.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidaLogin</servlet-name>
+        <url-pattern>/valida_login.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

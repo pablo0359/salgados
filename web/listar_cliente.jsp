@@ -31,14 +31,9 @@
                 <td>CPF</td>
                 <td>RG</td>
                 <td>Email</td>
-                <td>Login</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Status</td>
                 <td>OPÇÕES</td>
             </tr>
-            <% sdfghjklkjhgfd
+            <% 
             ArrayList<Cliente> lista = new ArrayList<Cliente>();
             ClienteDAO cDAO = new ClienteDAO();
             try{

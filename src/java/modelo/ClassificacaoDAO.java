@@ -138,4 +138,37 @@ necessária do classificacao pelo "id" obtido.
     return c;
     }
 
+ public ArrayList<Classificacao> listarAtivos() throws Exception{
+//Realizar a conexão com o banco de dados.
+    this.conectar();
+//Criar um vetor ArrayList de classificacao e gerar um novo objeto chamado lista, que irá receber todos os classificacaos e incluir na variável lista.
+    ArrayList<Classificacao> lista = new ArrayList<Classificacao>();
+//Criar a variável que irá receber os comando de sql.
+    String sql = "SELECT * FROM classificacao WHERE status=1";
+//criando a variável pstm para receber os comando e incluir no banco de dados.
+    PreparedStatement pstm = conn.prepareStatement(sql);
+/*Criado a variável rs de ResultSet para receber a tabela que foi 
+retornada do banco ao incluir o sql que estava no pstm*/
+ //pstm.executeQuery() serve para executar o comando sql e retornar uma tabela.
+    ResultSet rs = pstm.executeQuery();
+//Com a tabela dentro de rs iremos agora varrer a tabela com o while.
+ /*Enquanto tiver um proximo registro a variável irá obter a informação
+ e incluir dentro de "rs" vale ressaltar que o próximo serve exatamente
+para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
+    while(rs.next()){
+     Classificacao c = new Classificacao();
+     c.setId(rs.getInt("id"));
+     c.setTipo(rs.getString("tipo"));
+     c.setStatus(rs.getInt("status"));
+/*Ao terminar de inserir a informação da tabela no laço de repetição
+iremos adicionar na lista conforme abaixo:*/
+     lista.add(c);
+        }
+//Desconectar do banco de dados para não usar memória desnecessáriamente.
+    this.desconectar();
+/*Retorna a lista com os classificacaos existentes no banco de dados, caso contrário
+retorna uma lista vazia.*/
+ return lista;
+    }
+
 }

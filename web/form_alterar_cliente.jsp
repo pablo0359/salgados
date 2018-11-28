@@ -42,7 +42,7 @@
             email:   <input type="text" name="email" value="<%=c.getEmail() %>" size="60"/><br/>
             CPF:     <input type="text" name="cpf" value="<%=c.getCpf() %>" size="60" /><br/>
             RG:      <input type="text" name="rg" value="<%=c.getRG() %>" size="60" /><br/>
-            Senha:   <input type="password" name="senha" size="60" /><br/>
+            Senha:   <input type="password" name="senha" placeholder="Deixe em branco para manter a senha antiga"  size="60" /><br/>
              <br/>
             <input type="submit" value="Salvar"/>
         </form>
