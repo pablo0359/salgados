@@ -10,17 +10,13 @@
 <%@page import="modelo.Classificacao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-
-    <head>
+<!DOCTYPE html><head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="../../../../favicon.ico">
-
-        <title>Exemplo de navbar fixo ao topo, usando Bootstrap.</title>
 
         <!-- Principal CSS do Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +26,9 @@
         
     </head>
     
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="index.jsp">Salgados Banderantes</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

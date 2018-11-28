@@ -28,6 +28,66 @@
         <servlet-name>ValidaLogin</servlet-name>
         <servlet-class>controle.ValidaLogin</servlet-class>
     </servlet>
+	    <servlet>
+        <servlet-name>AlterarClassificacao</servlet-name>
+        <servlet-class>controle.AlterarClassificacao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarMenu</servlet-name>
+        <servlet-class>controle.AlterarMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarPerfil</servlet-name>
+        <servlet-class>controle.AlterarPerfil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirClassificacao</servlet-name>
+        <servlet-class>controle.InserirClassificacao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirMenu</servlet-name>
+        <servlet-class>controle.InserirMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirPerfil</servlet-name>
+        <servlet-class>controle.InserirPerfil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirClassificacao</servlet-name>
+        <servlet-class>controle.ExcluirClassificacao</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirMenu</servlet-name>
+        <servlet-class>controle.ExcluirMenu</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirPerfil</servlet-name>
+        <servlet-class>controle.ExcluirPerfil</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarCidade</servlet-name>
+        <servlet-class>controle.AlterarCidade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarEndereco</servlet-name>
+        <servlet-class>controle.AlterarEndereco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirCidade</servlet-name>
+        <servlet-class>controle.InserirCidade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirCidade</servlet-name>
+        <servlet-class>controle.ExcluirCidade</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirEndereco</servlet-name>
+        <servlet-class>controle.InserirEndereco</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirEndereco</servlet-name>
+        <servlet-class>controle.ExcluirEndereco</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -55,6 +115,66 @@
     <servlet-mapping>
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/valida_login.do</url-pattern>
+    </servlet-mapping>
+	    <servlet-mapping>
+        <servlet-name>AlterarClassificacao</servlet-name>
+        <url-pattern>/alterar_classificacao.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarMenu</servlet-name>
+        <url-pattern>/alterar_menu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarPerfil</servlet-name>
+        <url-pattern>/alterar_perfil.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirClassificacao</servlet-name>
+        <url-pattern>/inserir_classificacao.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirMenu</servlet-name>
+        <url-pattern>/inserir_menu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirPerfil</servlet-name>
+        <url-pattern>/inserir_perfil.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirClassificacao</servlet-name>
+        <url-pattern>/excluir_classificacao.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirMenu</servlet-name>
+        <url-pattern>/excluir_menu.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirPerfil</servlet-name>
+        <url-pattern>/excluir_perfil.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarCidade</servlet-name>
+        <url-pattern>/alterar_cidade.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarEndereco</servlet-name>
+        <url-pattern>/alterar_endereco.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirCidade</servlet-name>
+        <url-pattern>/inserir_cidade.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirCidade</servlet-name>
+        <url-pattern>/excluir_cidade.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirEndereco</servlet-name>
+        <url-pattern>/inserir_endereco.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirEndereco</servlet-name>
+        <url-pattern>/excluir_endereco.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
