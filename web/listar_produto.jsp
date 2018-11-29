@@ -44,7 +44,7 @@
             </tr>
             
             <%
-            int id = Integer.parseInt(request.getParameter("class"));
+          
             ArrayList<Produto> lista = new ArrayList<Produto>();
             ProdutoDAO pDAO = new ProdutoDAO();
             try{

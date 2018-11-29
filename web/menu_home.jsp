@@ -10,21 +10,7 @@
 <%@page import="modelo.Classificacao"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html><head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="../../../../favicon.ico">
 
-        <!-- Principal CSS do Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Estilos customizados para esse template -->
-        <link href="css/navbar-top-fixed.css" rel="stylesheet">
-        
-    </head>
     
         
 
@@ -49,13 +35,10 @@
             for(Classificacao c:lista){
                 %>
                   <li class="nav-item">
-                      <a class="nav-link" href="#?<%=c.getId() %>"><%=c.getTipo() %></a>
+                      <a class="nav-link" href="produto_classificado.jsp?clas=<%=c.getId() %>"><%=c.getTipo() %></a>
                   </li>
                 <% } %>  
                   
-                  <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Desativado</a>
-                  </li>
                 </ul>
                 <%
                     try{
@@ -66,8 +49,8 @@
                         out.print("  Bem-vindo "+uLogado.getNome()+"</br><a class='nav-link' href='sair.jsp'> Sair</a>");
                     }catch(Exception e){%>
                         <form class="form-inline mt-2 mt-md-0" action="login.jsp">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logar</button>
-                        </form> <%
+                            <button class="btn btn-light btn-secondary " type="submit">Logar</button>
+                        </form> <% 
                     }  
 
                   %>

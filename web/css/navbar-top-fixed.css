@@ -1,5 +1,18 @@
 /* Mostra que o navbar é fixo ao topo */
+html {
+      height: 100%;
+    }
 body {
-  min-height: 75rem;
   padding-top: 4.5rem;
 }
+.wrapper {
+      min-height: 100%;
+      margin-bottom: 72px;
+    }
+
+    .footer
+	{
+		
+      margin-top: -72px;
+      height: 72px;
+    }

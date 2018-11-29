@@ -8,13 +8,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Salgados Bandeirantes</title>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
         <%@include file="menu_home.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
+        <%@include file="banner.jsp" %>
+        </br>
+        <%@include file="produtos.jsp" %>
+        </div>
+        <%@include file="rodape.jsp" %>
         
-        <h1>Hello World!</h1>
-        okokok
     </body>
 </html>
