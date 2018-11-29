@@ -4,6 +4,8 @@
     Author     : pablo
 --%>
 
+<%@page import="modelo.Item"%>
+<%@page import="modelo.Venda"%>
 <%@page import="modelo.Menu"%>
 <%@page import="modelo.Cliente"%>
 <%@page import="modelo.ClassificacaoDAO"%>
@@ -41,12 +43,16 @@
                   
                 </ul>
                 <%
-                    try{
-
-                        Cliente uLogado = (Cliente) session.getAttribute("cliente");
-
                     
-                        out.print("  Bem-vindo "+uLogado.getNome()+"</br><a class='nav-link' href='sair.jsp'> Sair</a>");
+                    try{
+                        Venda venda = new Venda();
+                        venda = (Venda) session.getAttribute("venda");
+                        Cliente uLogado = (Cliente) session.getAttribute("cliente");
+                        
+                        
+                                           
+                        out.print("  Bem-vindo "+uLogado.getNome()+"</br><a class='nav-link' href='sair.jsp'> Sair</a> <a class='nav-link' href='form_fecha_carrinho.jsp'><img src='imagens/carrinho.png'/> ");
+                        %> <%=venda.getCarrinho().size() %></a> <%
                     }catch(Exception e){%>
                         <form class="form-inline mt-2 mt-md-0" action="login.jsp">
                             <button class="btn btn-light btn-secondary " type="submit">Logar</button>

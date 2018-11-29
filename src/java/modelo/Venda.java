@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -24,6 +25,7 @@ public class Venda {
     private Date datacancelamento;
     private Cliente cliente;
     private Funcionario funcionario;
+    private ArrayList<Item> carrinho;
 
     
     public int getId() {
@@ -96,5 +98,13 @@ public class Venda {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public ArrayList<Item> getCarrinho() {
+        return carrinho;
+    }
+
+    public void setCarrinho(ArrayList<Item> carrinho) {
+        this.carrinho = carrinho;
     }
 }

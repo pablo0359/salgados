@@ -41,7 +41,9 @@
           <img src="<%=p.getImg() %>" style="width:100%">
           <span class="w3-tag w3-display-topleft"><%=p.getSabor() %></span>
           <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Comprar </button>
+            <a href="form_catalogo_compra.jsp?id=<%=p.getId() %>&nova=sim">
+                <button class="w3-button w3-black">Comprar <img src="imagens/carrinho.png"/></button>
+            </a>
           </div>
         </div>
         <p><%=p.getNome() %><br><b class="w3-text-red">R$<%=p.getPreco() %> unidade</b></p>

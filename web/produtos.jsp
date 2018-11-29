@@ -4,20 +4,20 @@
     Author     : pablo
 --%>
 
+<%@page import="modelo.Item"%>
+<%@page import="modelo.Cliente"%>
+<%@page import="modelo.Venda"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="modelo.ProdutoDAO"%>
 <%@page import="modelo.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-  <div class="w3-row ">
+  <div class="w3-row " id="jeans">
     <%          
             ArrayList<Produto> listae = new ArrayList<Produto>();
+
             ProdutoDAO pDAO = new ProdutoDAO();
-            int i =0;
-            try{
-                
-               listae = pDAO.listar();
-                
+            try{                
+               listae = pDAO.listar();                
             }catch(Exception e){
                 out.print("Erro:"+e);
             }
@@ -33,7 +33,9 @@
             <a href="salgado.jsp?idpro=<%=p.getId() %>"><img src="<%=p.getImg() %>" style="width:100%"></a>
           <span class="w3-tag w3-display-topleft"><%=p.getSabor() %></span>
           <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Comprar </button>
+            <a href="form_catalogo_compra.jsp?id=<%=p.getId() %>&nova=sim">
+                <button class="w3-button w3-black">Comprar <img src="imagens/carrinho.png"/></button>
+            </a>
           </div>
         </div>
         <p><%=p.getNome() %><br><b class="w3-text-red">R$<%=p.getPreco() %> unidade</b></p>

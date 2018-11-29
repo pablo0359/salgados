@@ -28,7 +28,7 @@
         <servlet-name>ValidaLogin</servlet-name>
         <servlet-class>controle.ValidaLogin</servlet-class>
     </servlet>
-	    <servlet>
+    <servlet>
         <servlet-name>AlterarClassificacao</servlet-name>
         <servlet-class>controle.AlterarClassificacao</servlet-class>
     </servlet>
@@ -88,6 +88,14 @@
         <servlet-name>ExcluirEndereco</servlet-name>
         <servlet-class>controle.ExcluirEndereco</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GerenciarCarrinho</servlet-name>
+        <servlet-class>controle.GerenciarCarrinho</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCarrinho</servlet-name>
+        <servlet-class>controle.AddCarrinho</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -116,7 +124,7 @@
         <servlet-name>ValidaLogin</servlet-name>
         <url-pattern>/valida_login.do</url-pattern>
     </servlet-mapping>
-	    <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AlterarClassificacao</servlet-name>
         <url-pattern>/alterar_classificacao.do</url-pattern>
     </servlet-mapping>
@@ -175,6 +183,14 @@
     <servlet-mapping>
         <servlet-name>ExcluirEndereco</servlet-name>
         <url-pattern>/excluir_endereco.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GerenciarCarrinho</servlet-name>
+        <url-pattern>/gerenciar_carrinho.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCarrinho</servlet-name>
+        <url-pattern>/add_carrinho.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

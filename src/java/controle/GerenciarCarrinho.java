@@ -5,6 +5,7 @@
  */
 package controle;
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,16 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import modelo.Cliente;
-import modelo.ClienteDAO;
 import modelo.Item;
+import modelo.Produto;
+import modelo.ProdutoDAO;
 import modelo.Venda;
 
 /**
  *
  * @author pablo
  */
-public class ValidaLogin extends HttpServlet {
+public class GerenciarCarrinho extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,30 +42,42 @@ public class ValidaLogin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ValidaLogin</title>");            
+            out.println("<title>Servlet GerenciarCarrinho</title>");            
             out.println("</head>");
             out.println("<body>");
-            String login = request.getParameter("login");
-            String senha = request.getParameter("senha");
+            
+            HttpSession session = request.getSession();
             try {
-                HttpSession session = request.getSession();
-                Cliente u = new Cliente();
-                ClienteDAO uDAO = new ClienteDAO();
-                u = uDAO.logar(login, senha);
-                if(u.getId()>0){
-                    session.setAttribute("cliente", u);
-                    Venda venda = new Venda();
-                    venda.setCarrinho(new ArrayList<Item>());
-                    Cliente cliente = (Cliente) session.getAttribute("cliente");
-                    venda.setCliente(cliente);
-                    session.setAttribute("venda", venda);
-                    response.sendRedirect("index.jsp");
-                }else{
-                    out.print("<script type='text/javascript'>");
-                    out.print("alert('Login ou senha inválidos!');");
-                    out.print("history.back();");
-                    out.print("</script>");
+                
+                
+                
+                String op  =request.getParameter("op");
+                Venda v = (Venda) session.getAttribute("venda");
+                ArrayList<Item> carrinho =  v.getCarrinho();
+                
+                if(op.equals("add")){
+                    int id_produto = Integer.parseInt(request.getParameter("id_produto"));
+                    int quantidade =  Integer.parseInt(request.getParameter("quantidade")); 
+                    double valor =  Double.parseDouble(request.getParameter("valor"));
+                    
+                    ProdutoDAO pDAO = new ProdutoDAO();
+                    Item item = new Item();
+                    item.setProduto(pDAO.carregarPorId(id_produto));
+                    item.setQuantidade(quantidade);
+                    item.setPreco(valor);
+                    
+                    carrinho.add(item);
+                    v.setCarrinho(carrinho);
+                    session.setAttribute("venda", v);
+                    response.sendRedirect("form_fecha_carrinho.jsp");
+                }else if(op.equals("del")){
+                    int ord = Integer.parseInt(request.getParameter("ord"));
+                    carrinho.remove(ord);
+                    v.setCarrinho(carrinho);
+                    session.setAttribute("venda", v);
+                    response.sendRedirect("form_fecha_carrinho.jsp");
                 }
+                
             } catch (Exception e) {
                 out.print("Erro:"+e);
             }

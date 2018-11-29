@@ -18,7 +18,8 @@
 <div class="w3-content wrapper" style="max-width:1200px;min-height: 100%;margin-bottom: 72px;">
   <div class="w3-row ">
     <%
-          int id = Integer.parseInt(request.getParameter("idpro"));
+        
+            int id = Integer.parseInt(request.getParameter("idpro"));
           
             Produto pro = new Produto();
             ProdutoDAO pDAO = new ProdutoDAO();
@@ -47,9 +48,18 @@
                         <h1><%=pro.getNome() %></h1><br>
                         <h3><b class="w3-text-red">R$<%=pro.getPreco() %> unidade</b></h3>
                     </p>
-                    <div class="w3-display-container">
-                        <button type="button" class="btn btn-success"><h2>Comprar </h2></button></br></br>
-                        <button type="button" class="btn btn-outline-success">Adicionar ao Carrinho </button>
+                    <div class="w3-display-container">                
+                        
+                        <form method="post" action="gerenciar_carrinho.do">
+                         <input type="hidden" name="valor" value="<%=pro.getPreco()%>"/>
+                         <input type="hidden" name="id_produto" value="<%=pro.getId() %>"/>
+                         <input type="hidden" name="op" value="add"/>
+                        </br></br>Quantidade<input type="text" name="quantidade" class="form-control" value="1" size="3"/>
+                        <button type="submit" class="btn btn-success"><h2>Comprar </h2></button>
+                        </br></br>
+                        </form>
+                         <button type="submit" class="btn btn-outline-success" >Adicionar ao Carrinho </button>
+                        
                     </div>
             </div>            
           </div>
