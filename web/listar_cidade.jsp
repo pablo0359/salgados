@@ -27,6 +27,7 @@
                 <td>ID</td>
                 <td>Cidade</td>
                 <td>Taxa</td>
+                <td>Opçôes</td>
             </tr>
              <%
             ArrayList<Cidade> lista = new ArrayList<Cidade>();
@@ -43,7 +44,6 @@
                 <td><%=c.getId() %></td>
                 <td><%=c.getCidade()%></td>
                 <td><%=c.getTaxa()%></td>
-            </tr>
              <td><a href="form_alterar_cidade.jsp?id=<%=c.getId() %>"><img src="imagens/alterar.png"/></a> <a href="#" onclick="excluir(<%=c.getId() %>,'<%=c.getCidade()%>')"><img src="imagens/excluir.png"/></a>  </td>
             
             </tr>

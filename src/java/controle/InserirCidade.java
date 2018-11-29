@@ -41,20 +41,18 @@ public class InserirCidade extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
              
-             int id = Integer.parseInt(request.getParameter("id"));
                 String cidade = request.getParameter("cidade");
                 double taxa = Double.parseDouble(request.getParameter("taxa"));
             
                 try{
                     
             Cidade c = new Cidade();
-                c.setId(id);
                 c.setCidade(cidade);
                 c.setTaxa(taxa);
                 
                 CidadeDAO cDAO = new CidadeDAO();
-                cDAO.alterar(c);
-                response.sendRedirect("listar_produto.jsp");
+                cDAO.inserir(c);
+                response.sendRedirect("listar_cidade.jsp");
             } catch (Exception e) {
                 out.print("Erro:"+e);
             }

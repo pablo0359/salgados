@@ -14,7 +14,7 @@ public class Endereco {
     private int id;
     private String logradouro;
     private String uf;
-    private int cep;
+    private String cep;
     private String pais;
     private Cliente cliente;
     private Cidade cidade;
@@ -44,13 +44,7 @@ public class Endereco {
         this.uf = uf;
     }
 
-    public int getCep() {
-        return cep;
-    }
-
-    public void setCep(int cep) {
-        this.cep = cep;
-    }
+    
 
     public String getPais() {
         return pais;
@@ -74,5 +68,13 @@ public class Endereco {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 }

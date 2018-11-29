@@ -43,11 +43,10 @@ public class InserirEndereco extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
            
-            int id = Integer.parseInt(request.getParameter("id"));
                 String logradouro = request.getParameter("logradouro");
                 String uf = request.getParameter("uf");
-                int cep = Integer.parseInt(request.getParameter("id"));
-                String pais = request.getParameter("cep");
+                String cep = request.getParameter("cep");
+                String pais = request.getParameter("pais");
                 int cidade = Integer.parseInt(request.getParameter("cidade"));
                 int cliente = Integer.parseInt(request.getParameter("cliente"));
                 
@@ -59,14 +58,15 @@ public class InserirEndereco extends HttpServlet {
                   Cliente cc = new Cliente();
                   cc.setId(cliente);
                   
-                    end.setId(id);
                     end.setLogradouro(logradouro);
                     end.setUf(uf);
                     end.setCep(cep);
                     end.setPais(pais);
+                    end.setCliente(cc);
+                    end.setCidade(c);
                 EnderecoDAO eDAO = new EnderecoDAO();
                 eDAO.inserir(end);
-                response.sendRedirect("listar_produto.jsp");
+                response.sendRedirect("listar_endereco.jsp");
             } catch (Exception e) {
                 out.print("Erro:"+e);
             }

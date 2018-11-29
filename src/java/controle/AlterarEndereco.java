@@ -47,7 +47,7 @@ public class AlterarEndereco extends HttpServlet {
                int id = Integer.parseInt(request.getParameter("id"));
                 String logradouro = request.getParameter("logradouro");
                 String uf = request.getParameter("uf");
-                int cep = Integer.parseInt(request.getParameter("id"));
+                String cep = request.getParameter("id");
                 String pais = request.getParameter("cep");
                 int cidade = Integer.parseInt(request.getParameter("cidade"));
                 int cliente = Integer.parseInt(request.getParameter("cliente"));

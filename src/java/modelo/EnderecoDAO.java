@@ -26,7 +26,7 @@ public void inserir(Endereco e) throws Exception{
 //Inserir os parâmetros na variável do pstm
     pstm.setString(1, e.getLogradouro());
     pstm.setString(2, e.getUf());
-    pstm.setInt(3, e.getCep());
+    pstm.setString(3, e.getCep());
     pstm.setString(4, e.getPais());
     pstm.setInt(5, e.getCliente().getId());
     pstm.setInt(6, e.getCidade().getId());
@@ -47,7 +47,7 @@ public void alterar(Endereco e) throws Exception{
 //Incluir as variáveis dentro do pstm para depois executá-las.
     pstm.setString(1, e.getLogradouro());
     pstm.setString(2, e.getUf());
-    pstm.setInt(3, e.getCep());
+    pstm.setString(3, e.getCep());
     pstm.setString(4, e.getPais());
     pstm.setInt(5, e.getCliente().getId());
     pstm.setInt(6, e.getCidade().getId());
@@ -99,7 +99,7 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      e.setId(rs.getInt("id"));
      e.setLogradouro(rs.getString("logradouro"));
      e.setUf(rs.getString("uf"));
-     e.setCep(rs.getInt("cep"));
+     e.setCep(rs.getString("cep"));
      e.setPais(rs.getString("pais"));
      ClienteDAO clDAO = new ClienteDAO();
      e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
@@ -143,7 +143,7 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      e.setId(rs.getInt("id"));
      e.setLogradouro(rs.getString("logradouro"));
      e.setUf(rs.getString("uf"));
-     e.setCep(rs.getInt("cep"));
+     e.setCep(rs.getString("cep"));
      e.setPais(rs.getString("pais"));
      ClienteDAO clDAO = new ClienteDAO();
      e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));

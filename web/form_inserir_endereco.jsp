@@ -20,7 +20,7 @@
          <h1>Novo Endereço</h1>
         <form action="inserir_endereco.do" method="post">
             
-            Logradouro<input  type="text" name="Logradouro"  size="60" required/><br/>
+            Logradouro<input  type="text" name="logradouro"  size="60" required/><br/>
             Uf:<input  type="text" name="uf"  size="60" required/><br/>
             Cep:<input  type="text" name="cep" size="60"  required/><br/>
             Pais:<input  type="text" name="pais" size="60" required/><br/>
@@ -35,9 +35,9 @@
             }
             for(Cidade c:lista){
                 %>     
-        <option value="<%=c.getCidade()%>"><%=c.getTaxa()%></option>
+        <option value="<%=c.getId() %>"><%=c.getTaxa()%></option>
               <% } %>
-            </select>
+            </select></br>
                Cliente: <select name="cliente" >
               <%
             ArrayList<Cliente> lista1 = new ArrayList<Cliente>();
@@ -51,7 +51,7 @@
                 %>  
               <option value="<%=ci.getId() %>"><%=ci.getNome()%></option>
               <% } %>
-               </select>
+               </select></br>
                <input type="submit" value="Salvar"/>
         </form>
     </body>
