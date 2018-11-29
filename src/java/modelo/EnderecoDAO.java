@@ -157,5 +157,45 @@ necessária do endereco pelo "id" obtido.
     ;) legal né!                        */
     return e;
     }
+public ArrayList<Endereco> listarCli(int id) throws Exception{
+//Realizar a conexão com o banco de dados.
+    this.conectar();
+//Criar um vetor ArrayList de endereco e gerar um novo objeto chamado lista, que irá receber todos os enderecos e incluir na variável lista.
+    ArrayList<Endereco> lista = new ArrayList<Endereco>();
+//Criar a variável que irá receber os comando de sql.
+    String sql = "SELECT * FROM endereco WHERE cliente_id=?";
+//criando a variável pstm para receber os comando e incluir no banco de dados.
+    PreparedStatement pstm = conn.prepareStatement(sql);
+/*Criado a variável rs de ResultSet para receber a tabela que foi 
+    
+retornada do banco ao incluir o sql que estava no pstm*/
+ pstm.setInt(1, id);
+ //pstm.executeQuery() serve para executar o comando sql e retornar uma tabela.
+    ResultSet rs = pstm.executeQuery();
+//Com a tabela dentro de rs iremos agora varrer a tabela com o while.
+ /*Enquanto tiver um proximo registro a variável irá obter a informação
+ e incluir dentro de "rs" vale ressaltar que o próximo serve exatamente
+para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
+    while(rs.next()){
+     Endereco e = new Endereco();
+     e.setId(rs.getInt("id"));
+     e.setLogradouro(rs.getString("logradouro"));
+     e.setUf(rs.getString("uf"));
+     e.setCep(rs.getString("cep"));
+     e.setPais(rs.getString("pais"));
+     ClienteDAO clDAO = new ClienteDAO();
+     e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
+     CidadeDAO cDAO = new CidadeDAO();
+     e.setCidade(cDAO.carregarPorId(rs.getInt("cidade_id")));
+/*Ao terminar de inserir a informação da tabela no laço de repetição
+iremos adicionar na lista conforme abaixo:*/
+     lista.add(e);
+        }
+//Desconectar do banco de dados para não usar memória desnecessáriamente.
+    this.desconectar();
+/*Retorna a lista com os enderecos existentes no banco de dados, caso contrário
+retorna uma lista vazia.*/
+ return lista;
+    }
 
 }

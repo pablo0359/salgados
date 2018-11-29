@@ -37,13 +37,23 @@ try{
                   </li>
                   
                 </ul>
-                <%
+                <% try{
                         Cliente uLogado = (Cliente) session.getAttribute("cliente");
                         
                         
                                            
                         out.print("  Bem-vindo "+uLogado.getNome()+"</br><a class='nav-link' href='sair.jsp'> Sair</a> <a class='nav-link' href='form_fecha_carrinho.jsp'><img src='imagens/carrinho.png'/> ");
                         %> <%=v.getCarrinho().size() %></a> <%
+                            
+
+            
+
+
+            }catch(Exception e){
+                response.sendRedirect("login.jsp");
+            }  
+
+            
                      
 
                   %>
@@ -90,6 +100,21 @@ try{
             }
             %>
         </table>
+            <%
+                
+                %>
+        <div class="jumbotron">
+            <% int ii = 0; ii++; %>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" checked>
+                <h6><%=ii %>º Endereço</h6>
+            </div>
+        <p class="lead"> </p>
+        
+      </div>
+
+
+
         <br/>
         VALOR TOTAL ==========> R$ <%=total %> 
         <br/><br/>

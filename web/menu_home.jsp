@@ -51,7 +51,7 @@
                         
                         
                                            
-                        out.print("  Bem-vindo "+uLogado.getNome()+"</br><a class='nav-link' href='sair.jsp'> Sair</a> <a class='nav-link' href='form_fecha_carrinho.jsp'><img src='imagens/carrinho.png'/> ");
+                        out.print("  Bem-vindo <a class='nav-link' href='Conta.jsp'>"+uLogado.getNome()+"</a> </br><a class='nav-link' href='sair.jsp'> Sair</a> <a class='nav-link' href='form_fecha_carrinho.jsp'><img src='imagens/carrinho.png'/> ");
                         %> <%=venda.getCarrinho().size() %></a> <%
                     }catch(Exception e){%>
                         <form class="form-inline mt-2 mt-md-0" action="login.jsp">

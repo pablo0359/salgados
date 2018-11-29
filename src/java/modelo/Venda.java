@@ -25,6 +25,7 @@ public class Venda {
     private Date datacancelamento;
     private Cliente cliente;
     private Funcionario funcionario;
+    private Endereco endereco;
     private ArrayList<Item> carrinho;
 
     
@@ -106,5 +107,13 @@ public class Venda {
 
     public void setCarrinho(ArrayList<Item> carrinho) {
         this.carrinho = carrinho;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }

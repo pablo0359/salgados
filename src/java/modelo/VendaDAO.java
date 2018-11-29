@@ -21,7 +21,7 @@ public void inserir(Venda v) throws Exception{
 //Realizar a conexão com o banco de dados.
     this.conectar();
 //Criar uma sql para ser utilizada com o PreparedStatement
-    String sql = "INSERT INTO venda (data,dataentrega,total,status,chave,datacancelamento,cliente_id,funcionario_id) VALUES (now(),?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO venda (data,dataentrega,total,status,chave,datacancelamento,cliente_id,funcionario_id, id_end) VALUES (now(),?,?,?,?,?,?,?,?)";
 //Criar o metodo PreparedStatement que irá conectar com o banco de dados para realizar a inserção do sql.
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Inserir os parâmetros na variável do pstm
@@ -34,6 +34,8 @@ public void inserir(Venda v) throws Exception{
     pstm.setDate(6, (Date) v.getDatacancelamento());
     pstm.setInt(7, v.getCliente().getId());
     pstm.setInt(8, v.getFuncionario().getId());
+    
+    pstm.setInt(9, v.getEndereco().getId());
 //Executar as informações no banco de dados
     pstm.execute();
 //Desconectar do banco de dados.
@@ -166,6 +168,8 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      v.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      FuncionarioDAO cDAO = new FuncionarioDAO();
      v.setFuncionario(cDAO.carregarPorId(rs.getInt("funcionario_id")));
+     EnderecoDAO eDAO = new EnderecoDAO();
+     v.setEndereco(eDAO.carregarPorId(rs.getInt("id_end")));
         }
 //Desconectar do banco de dados para não usar memória desnecessáriamente.
     this.desconectar();
