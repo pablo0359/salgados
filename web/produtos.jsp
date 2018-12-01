@@ -33,7 +33,7 @@
             <a href="salgado.jsp?idpro=<%=p.getId() %>"><img src="<%=p.getImg() %>" style="width:100%"></a>
           <span class="w3-tag w3-display-topleft"><%=p.getSabor() %></span>
           <div class="w3-display-middle w3-display-hover">
-            <a href="form_catalogo_compra.jsp?id=<%=p.getId() %>&nova=sim">
+            <a href="salgado.jsp?idpro=<%=p.getId() %>">
                 <button class="w3-button w3-black">Comprar <img src="imagens/carrinho.png"/></button>
             </a>
           </div>

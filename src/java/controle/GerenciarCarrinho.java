@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Cliente;
 import modelo.Item;
 import modelo.Produto;
 import modelo.ProdutoDAO;
@@ -36,7 +37,7 @@ public class GerenciarCarrinho extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");   
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -47,6 +48,19 @@ public class GerenciarCarrinho extends HttpServlet {
             out.println("<body>");
             
             HttpSession session = request.getSession();
+            
+             try{
+
+                Cliente oioiLogado = (Cliente) session.getAttribute("cliente");
+                if (oioiLogado == null) {
+                 response.sendRedirect("login.jsp");
+             }
+
+
+            }catch(Exception e){
+                response.sendRedirect("login.jsp");
+            }  
+             
             try {
                 
                 

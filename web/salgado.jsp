@@ -41,7 +41,7 @@
             </div>            
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" height="auto" >
           <div class="card flex-md-row mb-4 shadow-sm h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
                     <p>
@@ -54,11 +54,10 @@
                          <input type="hidden" name="valor" value="<%=pro.getPreco()%>"/>
                          <input type="hidden" name="id_produto" value="<%=pro.getId() %>"/>
                          <input type="hidden" name="op" value="add"/>
-                        </br></br>Quantidade<input type="text" name="quantidade" class="form-control" value="1" size="3"/>
+                        </br></br>Quantidade<input type="text" name="quantidade" class="form-control" value="1" size="3"/></br>
                         <button type="submit" class="btn btn-success"><h2>Comprar </h2></button>
                         </br></br>
                         </form>
-                         <button type="submit" class="btn btn-outline-success" >Adicionar ao Carrinho </button>
                         
                     </div>
             </div>            

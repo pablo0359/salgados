@@ -9,7 +9,7 @@
 <%@page import="modelo.Cliente"%>
 <%@page import="modelo.Item"%>
 <%@page import="modelo.Venda"%>
-<%
+<% 
 Venda v = new Venda();
 try{
    v = (Venda) session.getAttribute("venda");
@@ -71,18 +71,16 @@ try{
         
         
         <div class="w3-content wrapper" style="max-width:1200px">
-        <h1>Venda</h1>
-        ID:<%=v.getCliente().getId() %> Cliente:<%=v.getCliente().getNome() %><br/><br/>
         
         <h2>Itens no carrinho</h2>
         <table class="table">
-            <tr>
+            <tr class="bg-danger">
                 <td>ORD</td>
                 <td>Produto</td>
                 <td>QTD</td>
                 <td>Preço</td>
                 <td>Sub Total</td>
-                <td>Remover</td>
+                <td style = "text-align: right">Remover</td>
             </tr>
             <%
             int i=0;
@@ -96,13 +94,19 @@ try{
                 <td><%=item.getQuantidade() %></td>
                 <td>R$ <%=item.getPreco()%></td>
                 <td>R$ <%=(item.getQuantidade()*item.getPreco()) %></td>
-                <td align="center"><a href="gerenciar_carrinho.do?op=del&ord=<%=i %>">X</a></td>
+                <td style = "text-align: right"><a href="gerenciar_carrinho.do?op=del&ord=<%=i %>"><img src="imagens/excluir.png"/>       </a></td>
             </tr>
             <%
                 i++;
             }
             %>
+         </table>   
+        <table class="table">
+            <tr class="table-danger">
+                <td>VALOR TOTAL</td>  <td style = "text-align: right">R$ <%=total %> </td>
+            </tr>            
         </table>
+            <% int ii = 0; %>
         <form action="">
             <%
                 ArrayList<Endereco> lista = new ArrayList<Endereco>();
@@ -117,30 +121,31 @@ try{
             %>
                 
         <div class="jumbotron">
-            <% int ii = 0; ii++; %>
+            <%  ii++; %>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="endrad" id="exampleRadios1" value="<%=e.getId() %>" checked>
                 <h6><%=ii %>º Endereço</h6>
             </div>
-            <p class="lead">Lougadouro: <%=e.getLogradouro() %>  </p></br>
-            <p class="lead">Cidade: <%=e.getCidade().getCidade() %>  </p>
-            <p class="lead">UF: <%=e.getUf() %>  </p></br>
-            <p class="lead">Pais: <%=e.getPais() %>  </p>
-            <p class="lead">CEP: <%=e.getCep() %>  </p></br>            
-            <p class="lead">Frete: <%=e.getCidade().getTaxa() %>  </p></br>
+            <p >Logradouro: <%=e.getLogradouro() %>  </br>
+            Cidade: <%=e.getCidade().getCidade() %>  
+            UF: <%=e.getUf() %>  </br>
+            Pais: <%=e.getPais() %>  
+            CEP: <%=e.getCep() %>  </br>            
+            Frete: <%=e.getCidade().getTaxa() %>  </p></br>
         
         </div>
             <% }  %>
-
-
-
         <br/>
-        VALOR TOTAL ==========> R$ <%=total %> 
+        <table class="table">
+            <tr>
+                <td>VALOR TOTAL</td>  <td style = "text-align: right">R$ <%=total %> </td>
+            </tr>
+        </table>
         <br/><br/>
-        <div class="btn-group" role="group" aria-label="Exemplo básico">
-        <a href="listar_cliente.jsp"class="btn btn-secondary"><input type="submit" class="btn btn-secondary"value="Cancelar"/></a>
-        <a href="index.jsp"class="btn btn-secondary"><input type="submit"  class="btn btn-secondary"value="Continuar comprando"/></a>  
-        <a href="finalizar_venda.do"class="btn btn-secondary"><input type="submit" class="btn btn-secondary" value="Concluir"/></a>
+        <div class="btn-group" align="right" role="group" aria-label="Exemplo básico">
+        
+        <a href="index.jsp"class="btn btn-secondary"><input type="button"  class="btn btn-secondary"value="Continuar comprando"/></a>  
+        <div class="btn btn-secondary"><input type="submit" class="btn btn-secondary" value="Concluir"/></div>
     </div>
         </form>
         </br></br>
