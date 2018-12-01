@@ -136,19 +136,12 @@ try{
         </div>
             <% }  %>
         <br/>
-        <table class="table">
-            <tr>
-                <td>VALOR TOTAL</td>  <td style = "text-align: right">R$ <%=total %> </td>
-            </tr>
-        </table>
-        <br/><br/>
-        <div class="btn-group" align="right" role="group" aria-label="Exemplo básico">
-        
-        <a href="index.jsp"class="btn btn-secondary"><input type="button"  class="btn btn-secondary"value="Continuar comprando"/></a>  
+        <div class="btn-group" style=" float:right;"  role="group" aria-label="Exemplo básico">        
+        <a href="index.jsp" class="btn btn-secondary"><input type="button"  class="btn btn-secondary"value="Continuar comprando"/></a>  
         <div class="btn btn-secondary"><input type="submit" class="btn btn-secondary" value="Concluir"/></div>
-    </div>
+        </div>
         </form>
-        </br></br>
+        </br></br></br>
         </div>
         <%@include file="rodape.jsp" %>
     </body>

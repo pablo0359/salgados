@@ -41,11 +41,6 @@
         <label for="inputPassword">Senha</label>
       </div>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="lembrar de mim"> Lembrar de mim
-        </label>
-      </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
       <p class="mt-5 mb-3 text-muted text-center"><a href="login_funcionario.jsp" class="nav-link">Funcionario</a></br>©2018</p>
     </form>

@@ -96,6 +96,10 @@
         <servlet-name>AddCarrinho</servlet-name>
         <servlet-class>controle.AddCarrinho</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Pagamento</servlet-name>
+        <servlet-class>controle.Pagamento</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>AddCarrinho</servlet-name>
         <url-pattern>/add_carrinho.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pagamento</servlet-name>
+        <url-pattern>/pagamento.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
