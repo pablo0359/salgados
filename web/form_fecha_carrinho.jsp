@@ -3,6 +3,9 @@
     Created on : 07/11/2018, 13:27:28
     Author     : Administrador
 --%>
+<%@page import="modelo.EnderecoDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Endereco"%>
 <%@page import="modelo.Cliente"%>
 <%@page import="modelo.Item"%>
 <%@page import="modelo.Venda"%>
@@ -100,18 +103,34 @@ try{
             }
             %>
         </table>
+        <form action="">
             <%
+                ArrayList<Endereco> lista = new ArrayList<Endereco>();
+            EnderecoDAO eDAO = new EnderecoDAO();
+            try{
+               lista = eDAO.listarCli(v.getCliente().getId());
+            }catch(Exception e){
+                out.print("Erro:"+e);
+            }
+            
+            for(Endereco e:lista){
+            %>
                 
-                %>
         <div class="jumbotron">
             <% int ii = 0; ii++; %>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="opcao1" checked>
+                <input class="form-check-input" type="radio" name="endrad" id="exampleRadios1" value="<%=e.getId() %>" checked>
                 <h6><%=ii %>º Endereço</h6>
             </div>
-        <p class="lead"> </p>
+            <p class="lead">Lougadouro: <%=e.getLogradouro() %>  </p></br>
+            <p class="lead">Cidade: <%=e.getCidade().getCidade() %>  </p>
+            <p class="lead">UF: <%=e.getUf() %>  </p></br>
+            <p class="lead">Pais: <%=e.getPais() %>  </p>
+            <p class="lead">CEP: <%=e.getCep() %>  </p></br>            
+            <p class="lead">Frete: <%=e.getCidade().getTaxa() %>  </p></br>
         
-      </div>
+        </div>
+            <% }  %>
 
 
 
@@ -123,6 +142,7 @@ try{
         <a href="index.jsp"class="btn btn-secondary"><input type="submit"  class="btn btn-secondary"value="Continuar comprando"/></a>  
         <a href="finalizar_venda.do"class="btn btn-secondary"><input type="submit" class="btn btn-secondary" value="Concluir"/></a>
     </div>
+        </form>
         </br></br>
         </div>
         <%@include file="rodape.jsp" %>
