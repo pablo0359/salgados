@@ -18,17 +18,19 @@
 
 <div class="w3-content wrapper" style="max-width:1200px;min-height: 100%;margin-bottom: 72px;">
   <div class="w3-row ">
-    <%          
-            ArrayList<Produto> listae = new ArrayList<Produto>();
-
+    <%
+          int id = Integer.parseInt(request.getParameter("clas"));
+          
+            ArrayList<Produto> listaaa = new ArrayList<Produto>();
             ProdutoDAO pDAO = new ProdutoDAO();
-            try{                
-               listae = pDAO.listar();                
+            try{
+               listaaa = pDAO.listarClass(id);
+                
             }catch(Exception e){
                 out.print("Erro:"+e);
             }
             
-            for(Produto p:listae){
+            for(Produto p:listaaa){
             
     if(p.getStatus() == 1){
     
@@ -36,10 +38,10 @@
       <div class="w3-col l3 s6">  
       <div class="w3-container">
         <div class="w3-display-container">
-            <a href="salgado.jsp?idpro=<%=p.getId() %>"><img src="<%=p.getImg() %>" style="width:100%"></a>
+          <img src="<%=p.getImg() %>" style="width:100%">
           <span class="w3-tag w3-display-topleft"><%=p.getSabor() %></span>
           <div class="w3-display-middle w3-display-hover">
-            <a href="salgado.jsp?idpro=<%=p.getId() %>">
+            <a href="form_catalogo_compra.jsp?id=<%=p.getId() %>&nova=sim">
                 <button class="w3-button w3-black">Comprar <img src="imagens/carrinho.png"/></button>
             </a>
           </div>
@@ -47,7 +49,9 @@
         <p><%=p.getNome() %><br><b class="w3-text-red">R$<%=p.getPreco() %> unidade</b></p>
       </div>
       </div>
-    <%  } } %> 
+    <%  } } %>  
+    
+  </div>
     <script>
 // Accordion 
 function myAccFunc() {

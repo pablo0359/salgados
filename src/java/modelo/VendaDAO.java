@@ -8,6 +8,7 @@ package modelo;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -17,29 +18,47 @@ import java.util.ArrayList;
 public class VendaDAO extends DataSource{
     
 //Criar o método Inserir
-public void inserir(Venda v) throws Exception{
+public int inserir(Venda v) throws Exception{
 //Realizar a conexão com o banco de dados.
     this.conectar();
+    String sql;
 //Criar uma sql para ser utilizada com o PreparedStatement
-    String sql = "INSERT INTO venda (data,dataentrega,total,status,chave,datacancelamento,cliente_id,funcionario_id, id_end) VALUES (now(),?,?,?,?,?,?,?,?)";
+if (v.getFuncionario() != null) {
+       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end, funcionario_id) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,?,?,?,?)";
+} else {
+       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,?,?,?)";
+}
 //Criar o metodo PreparedStatement que irá conectar com o banco de dados para realizar a inserção do sql.
-    PreparedStatement pstm = conn.prepareStatement(sql);
+    PreparedStatement pstm = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 //Inserir os parâmetros na variável do pstm
  //Inserido a (Date) para converter o date sql para o date do java.util.
     pstm.setDate(1, (Date) v.getData());
     pstm.setDate(2, (Date) v.getDataentrega());
     pstm.setDouble(3, v.getTotal());
     pstm.setInt(4, v.getStatus());
-    pstm.setLong(5, v.getChave());
-    pstm.setDate(6, (Date) v.getDatacancelamento());
-    pstm.setInt(7, v.getCliente().getId());
-    pstm.setInt(8, v.getFuncionario().getId());
+    pstm.setInt(5, v.getCliente().getId());
+    pstm.setInt(6, v.getEndereco().getId());
+   if (v.getFuncionario() != null) {
+       pstm.setInt(7, v.getFuncionario().getId());
+   }  
     
-    pstm.setInt(9, v.getEndereco().getId());
 //Executar as informações no banco de dados
     pstm.execute();
-//Desconectar do banco de dados.
-    this.desconectar();
+    ResultSet rs = pstm.getGeneratedKeys();
+    if(rs.next()){
+            v.setId(rs.getInt(1));
+        }
+        for(Item item:v.getCarrinho()){
+            String sql_item = "INSERT INTO item (venda_id,produto_id,quantidade,preco) VALUES(?,?,?,?)";
+            PreparedStatement pstm_item = conn.prepareStatement(sql_item);
+            pstm_item.setInt(1, v.getId());
+            pstm_item.setInt(2, item.getProduto().getId());
+            pstm_item.setDouble(3, item.getQuantidade());
+            pstm_item.setDouble(4, item.getPreco());
+            pstm_item.execute();
+        }
+        this.desconectar();
+        return v.getId();
     }
  
  //Criar método para excluir um venda, caso ocorra erros iremos tratar mais tarde com o Exception.
@@ -91,6 +110,7 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      v.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      FuncionarioDAO cDAO = new FuncionarioDAO();
      v.setFuncionario(cDAO.carregarPorId(rs.getInt("funcionario_id")));
+     v.setCarrinho(carregaItensVenda(rs.getInt("id")));
 /*Ao terminar de inserir a informação da tabela no laço de repetição
 iremos adicionar na lista conforme abaixo:*/
      lista.add(v);
@@ -167,9 +187,11 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      ClienteDAO clDAO = new ClienteDAO();
      v.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      FuncionarioDAO cDAO = new FuncionarioDAO();
-     v.setFuncionario(cDAO.carregarPorId(rs.getInt("funcionario_id")));
+     if(rs.getInt("funcionario_id")!= 0){
+     v.setFuncionario(cDAO.carregarPorId(rs.getInt("funcionario_id")));}
      EnderecoDAO eDAO = new EnderecoDAO();
      v.setEndereco(eDAO.carregarPorId(rs.getInt("id_end")));
+     v.setCarrinho(carregaItensVenda(id));
         }
 //Desconectar do banco de dados para não usar memória desnecessáriamente.
     this.desconectar();
@@ -177,6 +199,26 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
 necessária do venda pelo "id" obtido. 
     ;) legal né!                        */
     return v;
+    }
+
+public ArrayList<Item> carregaItensVenda(int id_venda) throws Exception{
+        this.conectar();
+        ArrayList<Item> lista = new ArrayList<Item>();
+        String sql = "SELECT * FROM item WHERE venda_id=?";
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setInt(1, id_venda);
+        ResultSet rs = pstm.executeQuery();
+        while (rs.next()) {
+            Item item = new Item();
+            item.setId(rs.getInt("id"));
+            ProdutoDAO pDAO = new ProdutoDAO();
+            item.setProduto(pDAO.carregarPorId(rs.getInt("produto_id")));
+            item.setQuantidade(rs.getInt("quantidade"));
+            item.setPreco(rs.getDouble("valor"));
+            lista.add(item);
+        }
+        this.desconectar();
+        return lista;
     }
 
 }
