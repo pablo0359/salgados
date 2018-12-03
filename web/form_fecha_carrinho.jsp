@@ -107,7 +107,7 @@ try{
             </tr>            
         </table>
             <% int ii = 0; %>
-        <form action="">
+        <form action="finaliza_compra.do" method="post">
             <%
                 ArrayList<Endereco> lista = new ArrayList<Endereco>();
             EnderecoDAO eDAO = new EnderecoDAO();

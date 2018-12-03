@@ -20,7 +20,7 @@ public void inserir(Endereco e) throws Exception{
 //Realizar a conexão com o banco de dados.
     this.conectar();
 //Criar uma sql para ser utilizada com o PreparedStatement
-    String sql = "INSERT INTO endereco (logradouro,uf,cep,pais,cliente_id,cidade_id) VALUES (?,?,?,?,?,?)";
+    String sql = "INSERT INTO endereco (logradouro,uf,cep,pais,cliente_id,cidade_id,numero) VALUES (?,?,?,?,?,?,?)";
 //Criar o metodo PreparedStatement que irá conectar com o banco de dados para realizar a inserção do sql.
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Inserir os parâmetros na variável do pstm
@@ -30,6 +30,8 @@ public void inserir(Endereco e) throws Exception{
     pstm.setString(4, e.getPais());
     pstm.setInt(5, e.getCliente().getId());
     pstm.setInt(6, e.getCidade().getId());
+    
+    pstm.setInt(7, e.getNumero());
 //Executar as informações no banco de dados
     pstm.execute();
 //Desconectar do banco de dados.
@@ -41,7 +43,7 @@ public void alterar(Endereco e) throws Exception{
 //Realizar a conexão.
     this.conectar();
 //Criar a variável que irá possuir a string do sql.
-    String sql = "UPDATE endereco SET logradouro=?,uf=?,cep=?,pais=?,cliente_id=?,cidade_id=? WHERE id=?";
+    String sql = "UPDATE endereco SET logradouro=?,uf=?,cep=?,pais=?,cliente_id=?,cidade_id=?, nemero=? WHERE id=?";
 //variável que irá incluir as variáveis no sql
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Incluir as variáveis dentro do pstm para depois executá-las.
@@ -51,6 +53,7 @@ public void alterar(Endereco e) throws Exception{
     pstm.setString(4, e.getPais());
     pstm.setInt(5, e.getCliente().getId());
     pstm.setInt(6, e.getCidade().getId());
+    pstm.setInt(7, e.getNumero());
     pstm.setInt(8, e.getId());
 //Executar o string com as variáveis dentro do pstm
     pstm.execute();
@@ -105,6 +108,7 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      CidadeDAO cDAO = new CidadeDAO();
      e.setCidade(cDAO.carregarPorId(rs.getInt("cidade_id")));
+     e.setNumero(rs.getInt("numero"));
 /*Ao terminar de inserir a informação da tabela no laço de repetição
 iremos adicionar na lista conforme abaixo:*/
      lista.add(e);
@@ -149,6 +153,8 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      CidadeDAO cDAO = new CidadeDAO();
      e.setCidade(cDAO.carregarPorId(rs.getInt("cidade_id")));
+     
+     e.setNumero(rs.getInt("numero"));
         }
 //Desconectar do banco de dados para não usar memória desnecessáriamente.
     this.desconectar();
@@ -187,6 +193,8 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      e.setCliente(clDAO.carregarPorId(rs.getInt("cliente_id")));
      CidadeDAO cDAO = new CidadeDAO();
      e.setCidade(cDAO.carregarPorId(rs.getInt("cidade_id")));
+     
+     e.setNumero(rs.getInt("numero"));
 /*Ao terminar de inserir a informação da tabela no laço de repetição
 iremos adicionar na lista conforme abaixo:*/
      lista.add(e);

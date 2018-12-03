@@ -33,6 +33,7 @@
                 <td>UF</td>
                 <td>CEP</td>
                 <td>PAIS</td>
+                <td>CIDADE</td>
             </TR>
             <%
             ArrayList<Endereco> lista = new ArrayList<Endereco>();
@@ -50,7 +51,7 @@
                 <td><%=e.getLogradouro()%></td>
                 <td><%=e.getUf()%></td>
                 <td><%=e.getCep()%></td>
-                <td><%=e.getCidade()%></td>
+                <td><%=e.getPais() %></td>
             
             <td><%
                 CidadeDAO cDAO = new CidadeDAO();

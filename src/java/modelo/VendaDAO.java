@@ -24,22 +24,22 @@ public int inserir(Venda v) throws Exception{
     String sql;
 //Criar uma sql para ser utilizada com o PreparedStatement
 if (v.getFuncionario() != null) {
-       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end, funcionario_id) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,?,?,?,?)";
+       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end, funcionario_id) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,1,?,?,?)";
 } else {
-       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,?,?,?)";
+       sql = "INSERT INTO venda (data,dataentrega,total,status,cliente_id, id_end) VALUES (now(),CURDATE() + INTERVAL 2 DAY ,?,1,?,?)";
 }
 //Criar o metodo PreparedStatement que irá conectar com o banco de dados para realizar a inserção do sql.
     PreparedStatement pstm = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 //Inserir os parâmetros na variável do pstm
+    Double dou=0.0;
+    for(Item item:v.getCarrinho())dou=dou+item.getPreco();
+    dou= dou + v.getEndereco().getCidade().getTaxa();
  //Inserido a (Date) para converter o date sql para o date do java.util.
-    pstm.setDate(1, (Date) v.getData());
-    pstm.setDate(2, (Date) v.getDataentrega());
-    pstm.setDouble(3, v.getTotal());
-    pstm.setInt(4, v.getStatus());
-    pstm.setInt(5, v.getCliente().getId());
-    pstm.setInt(6, v.getEndereco().getId());
+    pstm.setDouble(1,dou );
+    pstm.setInt(2, v.getCliente().getId());
+    pstm.setInt(3, v.getEndereco().getId());
    if (v.getFuncionario() != null) {
-       pstm.setInt(7, v.getFuncionario().getId());
+       pstm.setInt(4, v.getFuncionario().getId());
    }  
     
 //Executar as informações no banco de dados
@@ -214,7 +214,7 @@ public ArrayList<Item> carregaItensVenda(int id_venda) throws Exception{
             ProdutoDAO pDAO = new ProdutoDAO();
             item.setProduto(pDAO.carregarPorId(rs.getInt("produto_id")));
             item.setQuantidade(rs.getInt("quantidade"));
-            item.setPreco(rs.getDouble("valor"));
+            item.setPreco(rs.getDouble("preco"));
             lista.add(item);
         }
         this.desconectar();

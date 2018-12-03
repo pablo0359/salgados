@@ -42,7 +42,7 @@
       </div>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
-      <p class="mt-5 mb-3 text-muted text-center"><a href="login_fun.jsp" class="nav-link">Funcionario</a></br>©2018</p>
+      <p class="mt-5 mb-3 text-muted text-center"><a href="login.jsp" class="nav-link">Cliente</a></br>©2018</p>
     </form>
   
 

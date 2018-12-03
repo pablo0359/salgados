@@ -18,6 +18,7 @@ public class Endereco {
     private String pais;
     private Cliente cliente;
     private Cidade cidade;
+    private int numero;
 
     
     public int getId() {
@@ -76,5 +77,13 @@ public class Endereco {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 }

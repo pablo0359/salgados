@@ -50,81 +50,68 @@ public class Pagamento extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private final String EMAIL = "pablo@gmail.com";
-    private final String TOKEN = "pablo@gmail.com";
+    private final String EMAIL = "ednaluciacosta@gmail.com";
+    private final String TOKEN = "6A770A838DF44D01A7BCD777DFA5ECA7";
     private Venda venda;
+    
+    
             
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected String processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Pagamento</title>");            
-            out.println("</head>");
-            out.println("<body>");
+            
             try{
                 int id = Integer.parseInt(request.getParameter("id"));
                 VendaDAO vend = new VendaDAO();
                 venda =  vend.carregarPorId(id);
+                response.sendRedirect(criarPagamento(venda));
+                
             }
             catch(Exception e){
                 out.print("Erro:"+e);
             }
             
-            try{
-                PaymentRequest request = new PaymentRequest(request,  response);
-                request.setReference(venda.getId()+"");
-                request.setCurrency(Currency.BRL);
-                request.setSender(getSender());
-                request.setShipping(getShipping());
-                request.setItems(getItem());
-                request.setNotificationURL("");
-                request.setRedirectURL("");
-                
-                return request.register(getCredentials());
-            }
-            catch (PagSeguroServiceException ex)
-            {
-                Logger.getLogger(Pagamento.class.getName()).log(Level.SEVERE, null, ex);
-                return ex.getMessage();
-            }
+            
 
             
             
             
-            out.println("</body>");
-            out.println("</html>");
+            
         }
+        catch (Exception e)
+            {
+                return e.getMessage();
+            }
+        return null;
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request servlet request     
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request servlet request 
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -140,6 +127,34 @@ public class Pagamento extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+    String criarPagamento(Venda venda){
+        try{
+                
+                PaymentRequest request1 = new PaymentRequest();
+                request1.setReference(venda.getId()+"");
+                request1.setCurrency(Currency.BRL);
+                request1.setSender(getSender());
+                request1.setShipping(getShipping());
+                for(modelo.Item item:venda.getCarrinho()){
+                    br.com.uol.pagseguro.domain.Item itempag;
+                    itempag = new br.com.uol.pagseguro.domain.Item();
+                    itempag.setId(item.getId()+"");
+                    itempag.setDescription(item.getProduto().getNome());
+                    itempag.setQuantity(item.getQuantidade());
+                    itempag.setAmount(new BigDecimal(item.getPreco()));
+                request1.addItem(itempag);}
+                request1.setNotificationURL("");
+                request1.setRedirectURL("");
+                
+                return request1.register(getCredentials());
+            }
+            catch (PagSeguroServiceException ex)
+            {
+                return ex.getMessage();
+            }
+    }
+    
     private Sender getSender() {
 
         Sender sender = new Sender();
@@ -161,8 +176,16 @@ public class Pagamento extends HttpServlet {
         Address address = new Address();
         address.setCity(venda.getEndereco().getCidade().getCidade());
         address.setComplement("");
-        address.set
+        address.setCountry(venda.getEndereco().getPais());
+        address.setState(venda.getEndereco().getUf());
+        address.setPostalCode(venda.getEndereco().getCep());
+        address.setNumber(venda.getEndereco().getNumero()+"");
+        address.setDistrict("");
         return address;
+    }
+
+    private Credentials getCredentials() throws PagSeguroServiceException{
+         return new AccountCredentials(EMAIL, TOKEN);   
     }
 
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import modelo.Endereco;
+import modelo.EnderecoDAO;
 import modelo.Venda;
 import modelo.VendaDAO;
 
@@ -44,10 +46,15 @@ public class FinalizaCompra extends HttpServlet {
             
             HttpSession session = request.getSession();
             try {
+                int idend = Integer.parseInt(request.getParameter("endrad"));
+                Endereco ende = new Endereco();
+                EnderecoDAO eDAO = new EnderecoDAO();
+                ende = eDAO.carregarPorId(idend);
                 Venda v = (Venda) session.getAttribute("venda");
+                v.setEndereco(ende);
                 VendaDAO vDAO = new VendaDAO();
                 int id = vDAO.inserir(v);
-                response.sendRedirect("pagamento.do?id="+id);
+                response.sendRedirect("recibo_venda.jsp?id="+id);
             } catch (Exception e) {
                 out.print("Erro:"+e);
             }
