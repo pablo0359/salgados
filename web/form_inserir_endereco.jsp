@@ -15,8 +15,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
          <h1>Novo Endereço</h1>
         <form action="inserir_endereco.do" method="post">
             
@@ -54,5 +57,6 @@
                </select></br>
                <input type="submit" value="Salvar"/>
         </form>
+        </div>
     </body>
 </html>

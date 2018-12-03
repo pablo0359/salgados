@@ -12,9 +12,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Inserir produto</title>
+        <title>Inserir produto</title><%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
         <%--@include file="produto.jsp" --%>
         <h1>Novo Produto</h1>
         <form action="inserir_produto.do" method="post">
@@ -46,5 +48,6 @@
               </select>
             <input type="submit" value="Salvar"/>
         </form>
+        </div>
     </body>
 </html>

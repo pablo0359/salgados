@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sajsm
@@ -15,6 +17,8 @@ public class Perfil {
     private String nome;
     private String descricao;
     private int status;
+    
+    private ArrayList<Menu> meusMenus;
 
     
     public int getId() {
@@ -47,5 +51,13 @@ public class Perfil {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public ArrayList<Menu> getMeusMenus() {
+        return meusMenus;
+    }
+
+    public void setMeusMenus(ArrayList<Menu> meusMenus) {
+        this.meusMenus = meusMenus;
     }
 }

@@ -25,8 +25,11 @@ try{
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Alterar Menu</title>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
         <%--@include file="menu.jsp" --%>
         <h1>Alterando Menu</h1>
         <form action="alterar_menu.do" method="post">
@@ -37,5 +40,6 @@ try{
             Ícone:<input type="text" value="<%=m.getIcone() %>" name="icone" size="50"/><br/>
             <input type="submit" value="Salvar"/>
         </form>
+        </div>
     </body>
 </html>

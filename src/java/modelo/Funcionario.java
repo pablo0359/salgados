@@ -10,11 +10,9 @@ public class Funcionario {
     
     private int id;
     private String nome;
-    private String login;
     private int status;
     private String senha;
     private String cpf;
-    private String cargo;
     private String rg;
     private String email;
     private String telefone;
@@ -38,13 +36,6 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
 
     public String getSenha() {
         return senha;
@@ -62,13 +53,6 @@ public class Funcionario {
         this.perfil = perfil;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
 
     public String getRg() {
         return rg;

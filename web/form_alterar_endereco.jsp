@@ -31,8 +31,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
          <h1>Editando Endereço</h1>
         <form action="alterar_endereco.do" method="post">
             ID:<%=end.getId() %><br/>
@@ -72,6 +75,7 @@
                 <input type="submit" value="Salvar"/>
               </select
         </form>
+        </div>
            
       
         </body>

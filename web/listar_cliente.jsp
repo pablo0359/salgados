@@ -21,8 +21,11 @@
             }
         </script>
         <title>Lista de Clientes</title>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
         <h1>Lista de Clientes (<a href="form_inserir_cliente.jsp">Adicionar Cliente</a>)</h1>
         <table border="1">
             <tr>
@@ -56,5 +59,6 @@
             }
             %>
         </table>
+        </div>
     </body>
 </html>

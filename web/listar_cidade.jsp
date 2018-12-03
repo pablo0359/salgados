@@ -19,8 +19,11 @@
                 }
             }
         </script>
+        <%@include file="estilo.jsp" %>
     </head>
     <body>
+        <%@include file="menu.jsp" %>
+        <div class="w3-content wrapper" style="max-width:1200px">
         <h1>Lista de cidades(<a href="form_inserir_cidade.jsp"><img src="imagens/novo.png"/></a>)</h1>
         <table border="1">
             <tr>
@@ -50,5 +53,6 @@
             <%
             }
             %>
+        </div>
     </body>
 </html>

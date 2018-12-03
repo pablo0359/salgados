@@ -104,6 +104,18 @@
         <servlet-name>FinalizaCompra</servlet-name>
         <servlet-class>controle.FinalizaCompra</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AlterarFuncionario</servlet-name>
+        <servlet-class>controle.AlterarFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InserirFuncionario</servlet-name>
+        <servlet-class>controle.InserirFuncionario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidaFun</servlet-name>
+        <servlet-class>controle.ValidaFun</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>InserirCliente</servlet-name>
         <url-pattern>/inserir_cliente.do</url-pattern>
@@ -207,6 +219,18 @@
     <servlet-mapping>
         <servlet-name>FinalizaCompra</servlet-name>
         <url-pattern>/finaliza_compra.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarFuncionario</servlet-name>
+        <url-pattern>/alterar_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InserirFuncionario</servlet-name>
+        <url-pattern>/inserir_funcionario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidaFun</servlet-name>
+        <url-pattern>/valida_fun.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

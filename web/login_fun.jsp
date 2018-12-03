@@ -24,7 +24,7 @@
 
   <body>
      
-    <form class="form-signin" action="valida_login.do" method="post">
+    <form class="form-signin" action="valida_fun.do" method="post">
       <div class="text-center mb-4">
         <img class="mb-4" src="imagens/hamburger.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Salgados </br>Bandeirantes</h1>

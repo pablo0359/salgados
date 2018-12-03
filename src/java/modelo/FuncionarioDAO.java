@@ -24,11 +24,9 @@ public void inserir(Funcionario f) throws Exception{
     PreparedStatement pstm = conn.prepareStatement(sql);
  //Inserir os parâmetros para cada coluna da tabela acima.
     pstm.setString(1, f.getNome());
-    pstm.setString(2, f.getLogin());
     pstm.setInt(3, f.getStatus());
     pstm.setString(4, f.getSenha());
     pstm.setString(5, f.getCpf());
-    pstm.setString(6, f.getCargo());
     pstm.setString(7, f.getRg());
     pstm.setString(8, f.getEmail());
     pstm.setString(9, f.getTelefone());
@@ -63,11 +61,9 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
     {
      f.setId(rs.getInt("id"));
      f.setNome(rs.getString("nome"));
-     f.setLogin(rs.getString("login"));
      f.setStatus(rs.getInt("status"));
      f.setSenha(rs.getString("senha"));
      f.setCpf(rs.getString("cpf"));
-     f.setCargo(rs.getString("cargo"));
      f.setRg(rs.getString("rg"));
      f.setEmail(rs.getString("email"));
      f.setTelefone(rs.getString("telefone"));
@@ -93,11 +89,9 @@ public void alterar(Funcionario f) throws Exception{
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Incluir as variáveis dentro do pstm para depois executá-las.
     pstm.setString(1, f.getNome());
-    pstm.setString(2, f.getLogin());
     pstm.setInt(3, f.getStatus());
     pstm.setString(4, f.getSenha());
     pstm.setString(5, f.getCpf());
-    pstm.setString(6, f.getCargo());
     pstm.setString(7, f.getRg());
     pstm.setString(8, f.getEmail());
     pstm.setString(9, f.getTelefone());
@@ -150,11 +144,9 @@ para não pegar o cabeçalho da tabela que contem as colunas do banco de dados*/
      Funcionario f = new Funcionario();
      f.setId(rs.getInt("id"));
      f.setNome(rs.getString("nome"));
-     f.setLogin(rs.getString("login"));
      f.setStatus(rs.getInt("status"));
      f.setSenha(rs.getString("senha"));
      f.setCpf(rs.getString("cpf"));
-     f.setCargo(rs.getString("cargo"));
      f.setRg(rs.getString("rg"));
      f.setEmail(rs.getString("email"));
      f.setTelefone(rs.getString("telefone"));
@@ -210,7 +202,7 @@ public Funcionario logar(String login, String senha) throws Exception{
 //Criando um objeto funcionario para obter o login e a senha
     Funcionario f = new Funcionario();
 //Criar a veriável sql para inserir a string no banco de dados
-    String sql = "SELECT * FROM funcionario WHERE login=?";
+    String sql = "SELECT * FROM funcionario WHERE status=1 and email=?";
 //Criar a variável pstm para obter o parâmetro para preenchimento
     PreparedStatement pstm = conn.prepareStatement(sql);
 //Incluir o pstm para inserir o parâmetro dentro da string login
@@ -224,11 +216,9 @@ public Funcionario logar(String login, String senha) throws Exception{
 //se tudo for verdadeiro, iremos então pegar as informações da tabela
      f.setId(rs.getInt("id"));
      f.setNome(rs.getString("nome"));
-     f.setLogin(rs.getString("login"));
      f.setStatus(rs.getInt("status"));
      f.setSenha(rs.getString("senha"));
      f.setCpf(rs.getString("cpf"));
-     f.setCargo(rs.getString("cargo"));
      f.setRg(rs.getString("rg"));
      f.setEmail(rs.getString("email"));
      f.setTelefone(rs.getString("telefone"));
